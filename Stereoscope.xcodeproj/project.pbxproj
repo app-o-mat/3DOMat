@@ -8,20 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		9A497DFB1F00427800C238A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A497DFA1F00427800C238A3 /* AppDelegate.swift */; };
-		9A497DFD1F00427800C238A3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A497DFC1F00427800C238A3 /* ViewController.swift */; };
+		9A497DFD1F00427800C238A3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A497DFC1F00427800C238A3 /* MainViewController.swift */; };
 		9A497E001F00427800C238A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A497DFE1F00427800C238A3 /* Main.storyboard */; };
 		9A497E021F00427800C238A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A497E011F00427800C238A3 /* Assets.xcassets */; };
 		9A497E051F00427800C238A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A497E031F00427800C238A3 /* LaunchScreen.storyboard */; };
+		9A5A36E61F07D86200835181 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5A36E51F07D86200835181 /* Camera.swift */; };
+		9A74477F1F05D5DA00B9CE15 /* CombineChannelsFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A74477E1F05D5DA00B9CE15 /* CombineChannelsFilter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9A497DF71F00427800C238A3 /* Stereoscope.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stereoscope.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A497DFA1F00427800C238A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9A497DFC1F00427800C238A3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9A497DFC1F00427800C238A3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		9A497DFF1F00427800C238A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9A497E011F00427800C238A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A497E041F00427800C238A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9A497E061F00427800C238A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A5A36E51F07D86200835181 /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		9A74477E1F05D5DA00B9CE15 /* CombineChannelsFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineChannelsFilter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,11 +59,13 @@
 			isa = PBXGroup;
 			children = (
 				9A497DFA1F00427800C238A3 /* AppDelegate.swift */,
-				9A497DFC1F00427800C238A3 /* ViewController.swift */,
+				9A5A36E51F07D86200835181 /* Camera.swift */,
+				9A497DFC1F00427800C238A3 /* MainViewController.swift */,
 				9A497DFE1F00427800C238A3 /* Main.storyboard */,
 				9A497E011F00427800C238A3 /* Assets.xcassets */,
 				9A497E031F00427800C238A3 /* LaunchScreen.storyboard */,
 				9A497E061F00427800C238A3 /* Info.plist */,
+				9A74477E1F05D5DA00B9CE15 /* CombineChannelsFilter.swift */,
 			);
 			path = Stereoscope;
 			sourceTree = "<group>";
@@ -135,7 +141,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A497DFD1F00427800C238A3 /* ViewController.swift in Sources */,
+				9A5A36E61F07D86200835181 /* Camera.swift in Sources */,
+				9A497DFD1F00427800C238A3 /* MainViewController.swift in Sources */,
+				9A74477F1F05D5DA00B9CE15 /* CombineChannelsFilter.swift in Sources */,
 				9A497DFB1F00427800C238A3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -208,12 +216,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -257,10 +266,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -271,10 +281,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 85H8KB76TX;
 				INFOPLIST_FILE = Stereoscope/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.loufranco.Stereoscope;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -285,10 +296,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 85H8KB76TX;
 				INFOPLIST_FILE = Stereoscope/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.loufranco.Stereoscope;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -312,6 +324,7 @@
 				9A497E0B1F00427800C238A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
