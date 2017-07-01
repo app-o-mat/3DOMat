@@ -114,7 +114,13 @@ class MainViewController: UIViewController, CameraDelegate {
     }
 
     @IBAction func sharePhoto(sender: UIButton) {
-        
+        if let image = self.imageView.image {
+            let imageToShare = [ image ]
+            let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceRect = self.shareButton.bounds
+            activityViewController.popoverPresentationController?.sourceView = self.shareButton
+            self.present(activityViewController, animated: true, completion: nil)
+        }
     }
 }
 
