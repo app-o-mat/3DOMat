@@ -1,0 +1,23 @@
+lane :build_appstore do
+
+  gym(
+    scheme: "Stereoscope",
+    output_directory: "./build/app-store",
+    clean: true,
+    export_options: "./config/AppStoreConfiguration.plist",
+    output_name: "3D-o-Mat.ipa"
+  )
+
+end
+
+lane :build_adhoc do
+
+  gym(
+    scheme: "Stereoscope",
+    output_directory: "./build/ad-hoc",
+    clean: true,
+    export_options: "./config/AdHocConfiguration.plist",
+    output_name: "3D-o-Mat.ipa"
+  )
+
+end
