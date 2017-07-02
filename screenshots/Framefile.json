@@ -1,0 +1,18 @@
+{
+  "default": {
+    "background": "./background.jpg",
+    "title": {
+      "fonts": [
+        {
+          "supported": ["en-US", "fi", "it", "nl", "ru", "sv", "tr", "vi"],      
+          "font": "./fonts/NotoSans-Regular.ttf"
+        }
+      ],
+      "color": "#333333"      
+    },
+    "padding": 50
+  },
+
+  "data": [
+  ]
+}
