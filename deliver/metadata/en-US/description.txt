@@ -1,1 +1,11 @@
+3D-o-Mat is a simple iPhone and iPad app to take 3D photos that you can view with Red/Cyan 3D glasses (sold separately).
 
+To make a 3D Photo
+
+1. Point your device at the subject and tap the left/blue camera button.
+
+2. Move your device slightly to the right and tap the right/red camera button.
+
+3. Look at the photo with Red/Cyan 3D Glasses with the cyan lens on your left eye and the red lens on your right.
+
+You can save them to your photo album or share them with other apps and on social media sites such as Facebook and Twitter.
