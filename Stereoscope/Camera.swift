@@ -195,6 +195,8 @@ class Camera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
             connection.videoOrientation = .landscapeLeft
         case .landscapeLeft:
             connection.videoOrientation = .landscapeRight
+        case .portrait:
+            connection.videoOrientation = .portrait
         default:
             break
         }
