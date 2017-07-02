@@ -190,6 +190,15 @@ class Camera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
 
 
     func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
+        switch UIDevice.current.orientation {
+        case .landscapeRight:
+            connection.videoOrientation = .landscapeLeft
+        case .landscapeLeft:
+            connection.videoOrientation = .landscapeRight
+        default:
+            break
+        }
+
         guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
 
         // Draw the image on the screen
