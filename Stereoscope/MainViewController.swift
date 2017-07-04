@@ -135,18 +135,18 @@ class MainViewController: UIViewController, CameraDelegate {
         }
     }
 
+    func urlAction(title: String, urlString: String) -> UIAlertAction {
+        return UIAlertAction(title: title, style: .default) { [weak self] a in
+            self?.openURL(urlString: urlString)
+        }
+    }
+
     @IBAction func info(sender: UIButton) {
         let infoMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
-        let buyGlasses = UIAlertAction(title: "Buy 3D Glasses", style: .default) { [weak self] a in
-            self?.openURL(urlString: "http://amzn.to/2tBsFCQ")
-        }
-        infoMenu.addAction(buyGlasses)
-
-        let rate = UIAlertAction(title: "Rate on the App Store", style: .default) { [weak self] a in
-            self?.openURL(urlString: "https://itunes.apple.com/us/app/3d-o-mat/id1254858311?ls=1&mt=8&action=write-review")
-        }
-        infoMenu.addAction(rate)
+        infoMenu.addAction(urlAction(title: "Buy 3D Glasses", urlString: "http://amzn.to/2tBsFCQ"))
+        infoMenu.addAction(urlAction(title: "Rate on the App Store", urlString: "https://itunes.apple.com/us/app/3d-o-mat/id1254858311?ls=1&mt=8&action=write-review"))
+        infoMenu.addAction(urlAction(title: "Get Support", urlString: "http://loufranco.com/apps/3d-o-mat"))
 
         infoMenu.addAction(UIAlertAction(title: "Cancel", style: .cancel))
 
