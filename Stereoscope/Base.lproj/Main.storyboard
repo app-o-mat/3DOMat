@@ -27,6 +27,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VlU-iv-p5p">
                                 <rect key="frame" x="20" y="362" width="44" height="44"/>
+                                <accessibility key="accessibilityConfiguration" label="Capture the left-hand photo"/>
                                 <state key="normal" image="camera-left"/>
                                 <connections>
                                     <action selector="takeLeftPhotoWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eB2-QQ-kGv"/>
@@ -34,6 +35,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qPh-uY-Go7">
                                 <rect key="frame" x="960" y="362" width="44" height="44"/>
+                                <accessibility key="accessibilityConfiguration" label="Capture the right-hand photo"/>
                                 <state key="normal" image="camera-right"/>
                                 <connections>
                                     <action selector="takeRightPhotoWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="B94-sT-Nk1"/>
@@ -41,6 +43,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gpF-hg-GGM">
                                 <rect key="frame" x="490" y="704" width="44" height="44"/>
+                                <accessibility key="accessibilityConfiguration" label="Clear the captured photos"/>
                                 <state key="normal" image="clear"/>
                                 <connections>
                                     <action selector="clearPhotosWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mDW-11-9th"/>
@@ -48,6 +51,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qUP-pA-nDs">
                                 <rect key="frame" x="490" y="40" width="44" height="44"/>
+                                <accessibility key="accessibilityConfiguration" label="Share the 3D photo"/>
                                 <state key="normal" image="share"/>
                                 <connections>
                                     <action selector="sharePhotoWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bCj-HX-cLI"/>
