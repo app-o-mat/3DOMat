@@ -125,9 +125,35 @@ class MainViewController: UIViewController, CameraDelegate {
         }
     }
 
+    private func openURL(urlString: String) {
+        if let url = URL(string: urlString) {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
+        }
+    }
 
     @IBAction func info(sender: UIButton) {
-        
+        let infoMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+
+        let buyGlasses = UIAlertAction(title: "Buy 3D Glasses", style: .default) { [weak self] a in
+            self?.openURL(urlString: "http://amzn.to/2tBsFCQ")
+        }
+        infoMenu.addAction(buyGlasses)
+
+        let rate = UIAlertAction(title: "Rate on the App Store", style: .default) { [weak self] a in
+            self?.openURL(urlString: "https://itunes.apple.com/us/app/3d-o-mat/id1254858311?ls=1&mt=8&action=write-review")
+        }
+        infoMenu.addAction(rate)
+
+        infoMenu.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+
+        infoMenu.popoverPresentationController?.sourceRect = self.infoButton.bounds
+        infoMenu.popoverPresentationController?.sourceView = self.infoButton
+
+        self.present(infoMenu, animated: true, completion: nil)
     }
 }
 
