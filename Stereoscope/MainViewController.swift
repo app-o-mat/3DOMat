@@ -20,6 +20,8 @@ class MainViewController: UIViewController, CameraDelegate {
     @IBOutlet var shareButton: UIButton! = nil
     @IBOutlet var clearButton: UIButton! = nil
 
+    @IBOutlet var infoButton: UIButton! = nil
+
     // Empty/Error View
     @IBOutlet var emptyView: UIView! = nil
     @IBOutlet var errorView: UIView! = nil
@@ -121,6 +123,11 @@ class MainViewController: UIViewController, CameraDelegate {
             activityViewController.popoverPresentationController?.sourceView = self.shareButton
             self.present(activityViewController, animated: true, completion: nil)
         }
+    }
+
+
+    @IBAction func info(sender: UIButton) {
+        
     }
 }
 

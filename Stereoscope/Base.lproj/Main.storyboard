@@ -57,6 +57,17 @@
                                     <action selector="sharePhotoWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bCj-HX-cLI"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XBB-ZU-XCl">
+                                <rect key="frame" x="960" y="704" width="44" height="44"/>
+                                <accessibility key="accessibilityConfiguration" label="Info menu"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="3ok-Tg-mXR"/>
+                                </constraints>
+                                <state key="normal" image="info"/>
+                                <connections>
+                                    <action selector="infoWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2oS-Oy-aUx"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rqH-Cg-gJb">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <subviews>
@@ -111,8 +122,10 @@
                         <constraints>
                             <constraint firstItem="qUP-pA-nDs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1XS-8E-KIS"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="gpF-hg-GGM" secondAttribute="bottom" constant="20" id="2MM-Dk-SA3"/>
+                            <constraint firstItem="qPh-uY-Go7" firstAttribute="trailing" secondItem="XBB-ZU-XCl" secondAttribute="trailing" id="5kS-fQ-Q3c"/>
                             <constraint firstItem="VlU-iv-p5p" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Dg9-sU-TuO"/>
                             <constraint firstItem="9GL-fU-wsz" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Gb1-md-YqA"/>
+                            <constraint firstItem="gpF-hg-GGM" firstAttribute="bottom" secondItem="XBB-ZU-XCl" secondAttribute="bottom" id="OCd-Q7-wK0"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="rqH-Cg-gJb" secondAttribute="bottom" id="OMh-QN-0sH"/>
                             <constraint firstItem="gpF-hg-GGM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="PNl-Af-UFV"/>
                             <constraint firstItem="qUP-pA-nDs" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="RbB-iF-Xep"/>
@@ -133,6 +146,7 @@
                         <outlet property="errorLabel" destination="zdV-vA-7c1" id="v5R-hE-SRY"/>
                         <outlet property="errorView" destination="drH-Ub-tsy" id="cry-QA-dbk"/>
                         <outlet property="imageView" destination="9GL-fU-wsz" id="wzq-jf-TfK"/>
+                        <outlet property="infoButton" destination="XBB-ZU-XCl" id="RJg-Lz-jTD"/>
                         <outlet property="leftCaptureButton" destination="VlU-iv-p5p" id="0GM-mh-QFB"/>
                         <outlet property="rightCaptureButton" destination="qPh-uY-Go7" id="tH1-Zs-Cs6"/>
                         <outlet property="shareButton" destination="qUP-pA-nDs" id="0Ng-Vk-n8P"/>
@@ -147,6 +161,7 @@
         <image name="camera-left" width="44" height="44"/>
         <image name="camera-right" width="44" height="44"/>
         <image name="clear" width="44" height="44"/>
+        <image name="info" width="44" height="44"/>
         <image name="share" width="44" height="44"/>
     </resources>
 </document>
