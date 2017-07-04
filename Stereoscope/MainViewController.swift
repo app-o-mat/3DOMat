@@ -64,9 +64,31 @@ class MainViewController: UIViewController, CameraDelegate {
         }
     }
 
+    func makeCropRect(aspectRatio: CGSize, for size: CGSize) -> CGRect {
+        let aspectRatioFraction = aspectRatio.width / aspectRatio.height
+        let sizeFraction = size.width / size.height
+        let r: CGRect
+        if (aspectRatioFraction < sizeFraction) {
+            let w = size.height * aspectRatioFraction
+            r = CGRect(x: (size.width - w)/2, y: 0, width: w, height: size.height)
+        } else {
+            let h = size.width / aspectRatioFraction
+            r = CGRect(x: 0, y: (size.height - h)/2, width: size.width, height: h)
+        }
+        return r
+    }
+
+    func sizeToDeviceRatio(image: UIImage) -> UIImage? {
+        let r = makeCropRect(aspectRatio: self.imageView.bounds.size, for: image.size)
+        if let croppedCgImage = image.cgImage?.cropping(to: r) {
+            return UIImage(cgImage: croppedCgImage)
+        }
+        return nil
+    }
+
     func show(image: UIImage) {
         DispatchQueue.main.async { [weak self] in
-            self?.imageView?.image = image
+            self?.imageView?.image = self?.sizeToDeviceRatio(image: image)
         }
     }
 
