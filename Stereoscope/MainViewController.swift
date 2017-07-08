@@ -50,7 +50,16 @@ class MainViewController: UIViewController, CameraDelegate {
         self.errorView.isHidden = true
 
         // Button State
-        leftIsRed = UserDefaults.standard.bool(forKey: MainViewController.leftIsRedKey)
+        self.setLeftIsRed(leftIsRed: UserDefaults.standard.bool(forKey: MainViewController.leftIsRedKey))
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.camera.start()
+    }
+
+    private func setLeftIsRed(leftIsRed: Bool) {
+        self.leftIsRed = leftIsRed
         if leftIsRed {
             self.leftCaptureButton.setImage(UIImage(named: "camera-red"), for: .normal)
             self.rightCaptureButton.setImage(UIImage(named: "camera-blue"), for: .normal)
@@ -58,11 +67,8 @@ class MainViewController: UIViewController, CameraDelegate {
             self.leftCaptureButton.setImage(UIImage(named: "camera-blue"), for: .normal)
             self.rightCaptureButton.setImage(UIImage(named: "camera-red"), for: .normal)
         }
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.camera.start()
+        camera.setLeftIsRed(leftIsRed: leftIsRed)
+        UserDefaults.standard.set(leftIsRed, forKey: MainViewController.leftIsRedKey)
     }
 
     // Camera Delegate
@@ -180,6 +186,9 @@ class MainViewController: UIViewController, CameraDelegate {
     @IBAction func info(sender: UIButton) {
         let infoMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
+        infoMenu.addAction(UIAlertAction(title: "Switch to \(self.leftIsRed ? "Cyan/Red":"Red/Cyan")", style: .default) { [weak self] a in
+            self?.setLeftIsRed(leftIsRed: !(self?.leftIsRed ?? false))
+        })
         infoMenu.addAction(urlAction(title: "Buy 3D Glasses", urlString: "http://amzn.to/2tBsFCQ"))
         infoMenu.addAction(urlAction(title: "Rate on the App Store", urlString: "https://itunes.apple.com/us/app/3d-o-mat/id1254858311?ls=1&mt=8&action=write-review"))
         infoMenu.addAction(urlAction(title: "Get Support", urlString: "http://loufranco.com/apps/3d-o-mat"))

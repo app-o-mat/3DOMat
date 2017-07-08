@@ -38,6 +38,8 @@ class Camera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
     private var leftPhoto: CIImage? = nil
     private var rightPhoto: CIImage? = nil
 
+    private var leftIsRed = false
+
 
     public func start() {
         getCameraPermission()
@@ -71,6 +73,10 @@ class Camera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
     public func clearCapturedPhotos() {
         self.leftPhoto = nil
         self.rightPhoto = nil
+    }
+
+    public func setLeftIsRed(leftIsRed: Bool) {
+        self.leftIsRed = leftIsRed
     }
 
     private func getCameraPermission() {
@@ -151,6 +157,20 @@ class Camera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
         }
     }
 
+    private func set(images: (left: CIImage, right: CIImage), on filter: CIFilter) {
+        // Put the appropriate image in the red channel, and put the other one 
+        // in both the green and blue (for cyan)
+        if (self.leftIsRed) {
+            filter.setValue(images.left, forKey: "inputChannelRed")
+            filter.setValue(images.right, forKey: "inputChannelGreen")
+            filter.setValue(images.right, forKey: "inputChannelBlue")
+        } else {
+            filter.setValue(images.right, forKey: "inputChannelRed")
+            filter.setValue(images.left, forKey: "inputChannelGreen")
+            filter.setValue(images.left, forKey: "inputChannelBlue")
+        }
+    }
+
     private func create3DPhoto(imageBuffer: CVImageBuffer) -> UIImage? {
         let imageCaptured = CIImage(cvPixelBuffer: imageBuffer)
 
@@ -170,13 +190,8 @@ class Camera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
         // If there is a taken right photo, use it, otherwise, use the captured buffer
         let imageRight = self.rightPhoto ?? imageCaptured
 
-        // Take the right photo and put it in the red channel
-        // Take the left photo and put it in the blue and green channels (for cyan glasses)
-        // Put a light green in the green channel
         guard let combineChannelsFilter = CIFilter(name: "CombineChannelsFilter") else { return nil }
-        combineChannelsFilter.setValue(imageRight, forKey: "inputChannelRed")
-        combineChannelsFilter.setValue(imageLeft, forKey: "inputChannelGreen")
-        combineChannelsFilter.setValue(imageLeft, forKey: "inputChannelBlue")
+        set(images: (left: imageLeft, right: imageRight), on: combineChannelsFilter)
 
         // return the image
         guard let combineChannelsImage = combineChannelsFilter.outputImage else { return nil }
