@@ -1,6 +1,6 @@
-Version 1.1 of 3D-o-Mat has the following improvements:
+Version 1.2 of 3D-o-Mat has the following improvements:
 
-- An info menu with links to get support or buy 3D glasses
-- Images are shared with the aspect ratio of the device
+- You can now swap Red/Cyan sides so that you can use
+  3D-o-Mat with glasses that have the red lens on the left.
 
 If you like 3D-o-Mat, remember to rate and review the app.
