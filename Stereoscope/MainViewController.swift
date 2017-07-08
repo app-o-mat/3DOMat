@@ -27,6 +27,10 @@ class MainViewController: UIViewController, CameraDelegate {
     @IBOutlet var errorView: UIView! = nil
     @IBOutlet var errorLabel: UILabel! = nil
 
+    // Button State
+    static let leftIsRedKey = "leftIsRedKey"
+    var leftIsRed: Bool = false
+
     // Camera
     private var camera = Camera()
     
@@ -44,6 +48,16 @@ class MainViewController: UIViewController, CameraDelegate {
         self.errorView.layer.borderColor = UIColor.gray.cgColor
         self.errorView.layer.borderWidth = 2
         self.errorView.isHidden = true
+
+        // Button State
+        leftIsRed = UserDefaults.standard.bool(forKey: MainViewController.leftIsRedKey)
+        if leftIsRed {
+            self.leftCaptureButton.setImage(UIImage(named: "camera-red"), for: .normal)
+            self.rightCaptureButton.setImage(UIImage(named: "camera-blue"), for: .normal)
+        } else {
+            self.leftCaptureButton.setImage(UIImage(named: "camera-blue"), for: .normal)
+            self.rightCaptureButton.setImage(UIImage(named: "camera-red"), for: .normal)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {

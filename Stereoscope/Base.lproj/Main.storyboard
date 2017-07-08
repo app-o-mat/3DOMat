@@ -28,7 +28,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VlU-iv-p5p">
                                 <rect key="frame" x="20" y="362" width="44" height="44"/>
                                 <accessibility key="accessibilityConfiguration" label="Capture the left-hand photo"/>
-                                <state key="normal" image="camera-left"/>
+                                <state key="normal" image="camera-blue"/>
                                 <connections>
                                     <action selector="takeLeftPhotoWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eB2-QQ-kGv"/>
                                 </connections>
@@ -36,7 +36,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qPh-uY-Go7">
                                 <rect key="frame" x="960" y="362" width="44" height="44"/>
                                 <accessibility key="accessibilityConfiguration" label="Capture the right-hand photo"/>
-                                <state key="normal" image="camera-right"/>
+                                <state key="normal" image="camera-red"/>
                                 <connections>
                                     <action selector="takeRightPhotoWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="B94-sT-Nk1"/>
                                 </connections>
@@ -158,8 +158,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="camera-left" width="44" height="44"/>
-        <image name="camera-right" width="44" height="44"/>
+        <image name="camera-blue" width="44" height="44"/>
+        <image name="camera-red" width="44" height="44"/>
         <image name="clear" width="44" height="44"/>
         <image name="info" width="44" height="44"/>
         <image name="share" width="44" height="44"/>
