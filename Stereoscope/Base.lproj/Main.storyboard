@@ -57,17 +57,6 @@
                                     <action selector="sharePhotoWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bCj-HX-cLI"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XBB-ZU-XCl">
-                                <rect key="frame" x="960" y="704" width="44" height="44"/>
-                                <accessibility key="accessibilityConfiguration" label="Info menu"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="44" id="3ok-Tg-mXR"/>
-                                </constraints>
-                                <state key="normal" image="info"/>
-                                <connections>
-                                    <action selector="infoWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2oS-Oy-aUx"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rqH-Cg-gJb">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <subviews>
@@ -117,6 +106,17 @@
                                     <constraint firstItem="RMW-RX-fLm" firstAttribute="leading" secondItem="Tac-34-h9s" secondAttribute="trailing" constant="20" id="zcR-qO-4ps"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XBB-ZU-XCl">
+                                <rect key="frame" x="960" y="704" width="44" height="44"/>
+                                <accessibility key="accessibilityConfiguration" label="Info menu"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="3ok-Tg-mXR"/>
+                                </constraints>
+                                <state key="normal" image="info"/>
+                                <connections>
+                                    <action selector="infoWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2oS-Oy-aUx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
