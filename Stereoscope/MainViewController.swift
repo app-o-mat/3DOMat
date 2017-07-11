@@ -33,7 +33,9 @@ class MainViewController: UIViewController, CameraDelegate {
 
     // Camera
     private var camera = Camera()
-    
+
+    // State
+    var capturedDeviceSize: CGSize? = nil
 
     override var prefersStatusBarHidden: Bool {
         get { return true }
@@ -99,7 +101,7 @@ class MainViewController: UIViewController, CameraDelegate {
     }
 
     func sizeToDeviceRatio(image: UIImage) -> UIImage? {
-        let r = makeCropRect(aspectRatio: self.imageView.bounds.size, for: image.size)
+        let r = makeCropRect(aspectRatio: self.capturedDeviceSize ?? self.imageView.bounds.size, for: image.size)
         if let croppedCgImage = image.cgImage?.cropping(to: r) {
             return UIImage(cgImage: croppedCgImage)
         }
@@ -110,6 +112,10 @@ class MainViewController: UIViewController, CameraDelegate {
         DispatchQueue.main.async { [weak self] in
             self?.imageView?.image = self?.sizeToDeviceRatio(image: image)
         }
+    }
+
+    func bothSidesCaptured() {
+        self.capturedDeviceSize = self.imageView.bounds.size
     }
 
     // App Events
@@ -154,6 +160,7 @@ class MainViewController: UIViewController, CameraDelegate {
     }
 
     @IBAction func clearPhotos(sender: UIButton) {
+        self.capturedDeviceSize = nil
         camera.clearCapturedPhotos()
     }
 

@@ -16,6 +16,7 @@ protocol CameraDelegate: class {
     func cameraDidStart()
     func show(image: UIImage)
     func cameraDidError(with error: String)
+    func bothSidesCaptured()
 }
 
 class Camera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
@@ -177,11 +178,19 @@ class Camera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
         if self.shouldCaptureLeft {
             self.leftPhoto = imageCaptured
             self.shouldCaptureLeft = false
+
+            if let _ = self.rightPhoto {
+                self.delegate?.bothSidesCaptured()
+            }
         }
 
         if self.shouldCaptureRight {
             self.rightPhoto = imageCaptured
             self.shouldCaptureRight = false
+
+            if let _ = self.leftPhoto {
+                self.delegate?.bothSidesCaptured()
+            }
         }
 
         // If there is a taken left photo, use it, otherwise, use the captured buffer
