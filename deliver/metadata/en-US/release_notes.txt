@@ -1,6 +1,6 @@
-Version 1.2 of 3D-o-Mat has the following improvements:
+Version 1.3 of 3D-o-Mat has the following improvements:
 
-- You can now swap Red/Cyan sides so that you can use
-  3D-o-Mat with glasses that have the red lens on the left.
+- If you rotate the device after capturing, 3D-o-Mat will
+  now remember to save it at the original captured size.
 
 If you like 3D-o-Mat, remember to rate and review the app.
