@@ -31,3 +31,17 @@ env/
 
 # fastlane
 fastlane/report.xml
+
+# CoreML
+*.mlmodel
+
+# fastlane readme
+fastlane/README.md
+fastlane/test_output
+
+deliver/Preview.html
+
+# Carthage
+Carthage/Checkouts
+
+
