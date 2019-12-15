@@ -8,5 +8,10 @@
 	<string>85H8KB76TX</string>
 	<key>uploadBitcode</key>
 	<false/>
+  <key>provisioningProfiles</key>
+  <dict>
+    <key>com.loufranco.Stereoscope</key>
+    <string>Stereoscope App Store</string>
+  </dict>
 </dict>
 </plist>
