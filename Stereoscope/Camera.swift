@@ -25,7 +25,7 @@ class Camera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
 
     private var captureSession: AVCaptureSession?
 
-    private let cameraPosition = AVCaptureDevicePosition.back
+    private let cameraPosition = AVCaptureDevice.Position.back
     private let context = CIContext()
 
     private var hasCameraPermission: Bool = false
@@ -81,17 +81,19 @@ class Camera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
     }
 
     private func getCameraPermission() {
-        switch AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo) {
+        switch AVCaptureDevice.authorizationStatus(for: AVMediaType.video) {
         case .authorized:
             self.hasCameraPermission = true
             break
         case .notDetermined:
             sessionQueue.suspend()
-            AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo) { [weak self] granted in
+            AVCaptureDevice.requestAccess(for: AVMediaType.video) { [weak self] granted in
                 self?.hasCameraPermission = granted
                 self?.sessionQueue.resume()
             }
         case .denied, .restricted:
+            break
+        @unknown default:
             break
         }
     }
@@ -105,7 +107,7 @@ class Camera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
 
             if (captureSession.canAddOutput(sessionOutput)){
                 captureSession.addOutput(sessionOutput)
-                guard let connection = sessionOutput.connection(withMediaType: AVMediaTypeVideo) else { return false }
+                guard let connection = sessionOutput.connection(with: AVMediaType.video) else { return false }
                 guard connection.isVideoOrientationSupported else { return false }
                 guard connection.isVideoMirroringSupported else { return false }
                 connection.videoOrientation = .landscapeRight
@@ -116,11 +118,10 @@ class Camera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
         return false
     }
 
-    @available(iOS 10.0, *)
-    private func configureSession10() -> Bool {
-        let deviceTypes: [AVCaptureDeviceType] = [ .builtInTelephotoCamera, .builtInWideAngleCamera]
+    private func configureSession() -> Bool {
+        let deviceTypes: [AVCaptureDevice.DeviceType] = [ .builtInTelephotoCamera, .builtInWideAngleCamera]
 
-        guard let deviceDiscoverySession = AVCaptureDeviceDiscoverySession(deviceTypes: deviceTypes, mediaType: AVMediaTypeVideo, position: self.cameraPosition) else { return false }
+        let deviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: deviceTypes, mediaType: AVMediaType.video, position: self.cameraPosition)
         for device in (deviceDiscoverySession.devices) {
             do {
                 let input = try AVCaptureDeviceInput(device: device)
@@ -133,29 +134,6 @@ class Camera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
             }
         }
         return false
-    }
-
-    private func configureSession9() -> Bool {
-        do {
-            let device = AVCaptureDevice.devices().filter {
-                ($0 as AnyObject).hasMediaType(AVMediaTypeVideo) &&
-                    ($0 as AnyObject).position == cameraPosition
-                }.first as? AVCaptureDevice
-
-            let input = try AVCaptureDeviceInput(device: device)
-            return configure(input: input)
-        } catch {
-
-        }
-        return false
-    }
-
-    private func configureSession() -> Bool {
-        if #available(iOS 10.0, *) {
-            return configureSession10()
-        } else {
-            return configureSession9()
-        }
     }
 
     private func set(images: (left: CIImage, right: CIImage), on filter: CIFilter) {
@@ -213,7 +191,8 @@ class Camera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
     // MARK: AVCaptureVideoDataOutputSampleBufferDelegate
 
 
-    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
+
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         switch UIDevice.current.orientation {
         case .landscapeRight:
             connection.videoOrientation = .landscapeLeft
@@ -231,6 +210,4 @@ class Camera: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
         guard let uiImage = create3DPhoto(imageBuffer: imageBuffer) else { return }
         self.delegate?.show(image: uiImage)
     }
-
-
 }

@@ -32,7 +32,7 @@ public class CombineChannelsFilter: CIFilter {
     @objc dynamic var inputChannelBlue: CIImage?
     @objc dynamic var inputChannelGreen: CIImage?
 
-    let combineChannelsKernel = CIColorKernel(string:
+    let combineChannelsKernel = CIColorKernel(source:
         "kernel vec4 combineChannelKernel(__sample red, __sample green, __sample blue) {\n" +
         "   return vec4(red.r, green.g, blue.b, 1.0);\n" +
         "}"
@@ -80,6 +80,6 @@ public class CombineChannelsFilter: CIFilter {
             inputChannelRed, inputChannelGreen, inputChannelBlue
         ]
 
-        return combineChannelsKernel.apply(withExtent: extent, arguments: arguments)
+        return combineChannelsKernel.apply(extent: extent, arguments: arguments)
     }
 }

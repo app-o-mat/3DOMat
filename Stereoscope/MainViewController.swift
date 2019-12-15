@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AVFoundation
 
 class MainViewController: UIViewController, CameraDelegate {
 
@@ -53,11 +52,6 @@ class MainViewController: UIViewController, CameraDelegate {
 
         // Button State
         self.setLeftIsRed(leftIsRed: UserDefaults.standard.bool(forKey: MainViewController.leftIsRedKey))
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.camera.start()
     }
 
     private func setLeftIsRed(leftIsRed: Bool) {
@@ -115,14 +109,16 @@ class MainViewController: UIViewController, CameraDelegate {
     }
 
     func bothSidesCaptured() {
-        self.capturedDeviceSize = self.imageView.bounds.size
+        DispatchQueue.main.async { [weak self] in
+            self?.capturedDeviceSize = self?.imageView.bounds.size
+        }
     }
 
     // App Events
     private func subscribeToAppEvents() {
         let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(appBecameActive), name: Notification.Name.UIApplicationDidBecomeActive, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(appResignActive), name: Notification.Name.UIApplicationWillResignActive, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(appBecameActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(appResignActive), name: UIApplication.willResignActiveNotification, object: nil)
     }
 
     @objc private func appBecameActive() {
